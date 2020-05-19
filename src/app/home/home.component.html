@@ -1,0 +1,16 @@
+<div class="mat-display-2" style="font-weight: bold;">Home Page
+    <div class="mat-display-2">Welcome
+        <mat-nav-list *ngIf="authService.isLoggedIn()">
+            <a mat-list-item [routerLink]="['admin']">Admin</a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['login']">Login</a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['logout']">Logout</a>
+        </mat-nav-list>
+    </div>
+</div>
+
+
+
