@@ -1,4 +1,4 @@
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +9,7 @@ import { Observable } from "rxjs/Observable";
   providedIn: 'root'
 })
 export class AuthService {
-  currentUser:'';
+  currentUser:any;
   private url="http://127.0.0.1:5000/";
 
   constructor(private httpClient:HttpClient) { 
@@ -42,8 +42,10 @@ export class AuthService {
   }
   isLoggedIn(){
 
-    return true;
-
+    console.log(tokenNotExpired('token'))
+    return tokenNotExpired('token');
   }
+
+
 }
 
