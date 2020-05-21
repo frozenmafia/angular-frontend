@@ -9,8 +9,7 @@ import { Observable } from "rxjs/Observable";
   providedIn: 'root'
 })
 export class AuthService {
-  currentUser:any;
-  private url="http://127.0.0.1:5000/";
+  private url="http://192.168.43.145:5000/";
 
   constructor(private httpClient:HttpClient) { 
 
@@ -26,9 +25,7 @@ export class AuthService {
         console.log(result['token']);
         if(result && result['token']){
           localStorage.setItem('token',result['token']);
-          let jwt = new JwtHelper();
-          this.currentUser = jwt.decodeToken(localStorage.getItem('token'));
-          console.log(this.currentUser['userId'])
+          console.log("=====>>",this.currentUser())
           return true;
         }
         else{
@@ -42,10 +39,16 @@ export class AuthService {
   }
   isLoggedIn(){
 
-    console.log(tokenNotExpired('token'))
+    console.log(tokenNotExpired('token'));
     return tokenNotExpired('token');
   }
 
+  currentUser(){
+    let token = localStorage.getItem('token');
+    if(!token) return null;
+    return new JwtHelper().decodeToken(token);
+
+  }
 
 }
 
